@@ -11,7 +11,7 @@ jobs:
           name: Install npm dependencies
           command: |
             npm install --save
-      - snyk/scan
+      - snyk/scan:
           fail-on-issues: false
       - run:
           name: Run Unit Tests
