@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  snyk: snyk/snyk@2.1.0
 jobs:
   run_tests:
     docker:
@@ -9,6 +11,7 @@ jobs:
           name: Install npm dependencies
           command: |
             npm install --save
+      - snyk/scan
       - run:
           name: Run Unit Tests
           command: |
