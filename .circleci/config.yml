@@ -2,6 +2,11 @@ version: 2.1
 orbs:
   snyk: snyk/snyk@2.1.0
 jobs:
+  runner-test:
+    machine: true
+    resource_class: olaftest/myresourceclass
+    steps:
+      - run: echo "Hi I'm on Runners!"
   run_tests:
     docker:
       - image: circleci/node:12
@@ -105,6 +110,9 @@ jobs:
             terraform init
             terraform destroy -var credentials=$HOME/gcloud_keys --auto-approve
 workflows:
+  testing:
+    jobs:
+      - runner-test
   build_test:
     jobs:
       - run_tests
